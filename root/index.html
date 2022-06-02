@@ -1,0 +1,131 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.5.min.css" />
+<section>
+  <title>frs | indev</title>
+    <article>
+        <script>
+            let events = []
+
+            Object.defineProperty(document, 'cookie', {
+                get: function() {
+                    console.log('cookie retrieve attempt');
+                    events.push("cookie:get")
+                    return "blocked by https://github.com/qaiik/frsafety"
+                },
+                set: function(val) {
+                    events.push("cookie:set")
+                    console.log('cookie set attempt', arguments);
+                    return "blocked by https://github.com/qaiik/frsafety"
+                }
+            });
+
+            let e = document.head;
+
+            document.querySelector = function(s) {
+                return e
+            }
+
+            document.querySelectorAll = function(sa) {
+                return [e]
+            }
+
+            Object.defineProperty(e, 'innerHTML', {
+                get: function() {
+                    console.log('text:get');
+                    events.push("text:get")
+                    return "blocked by https://github.com/qaiik/frsafety"
+                },
+                set: function(val) {
+                    events.push("text:set")
+                    console.log('text:set', arguments);
+                    return "blocked by https://github.com/qaiik/frsafety"
+                }
+            });
+
+            Object.defineProperty(e, 'innerText', {
+                get: function() {
+                    console.log('text:get');
+                    events.push("text:get")
+                    return "blocked by https://github.com/qaiik/frsafety"
+                },
+                set: function(val) {
+                    events.push("text:set")
+                    console.log('text:set', arguments);
+                    return "blocked by https://github.com/qaiik/frsafety"
+                }
+            });
+
+            Object.defineProperty(e, 'textContent', {
+                get: function() {
+                    console.log('text:get');
+                    events.push("text:get")
+                    return "blocked by https://github.com/qaiik/frsafety"
+                },
+                set: function(val) {
+                    events.push("text:set")
+                    console.log('text:set', arguments);
+                    return "blocked by https://github.com/qaiik/frsafety"
+                }
+            });
+
+            Object.defineProperty(e, 'outerText', {
+                get: function() {
+                    console.log('text:get');
+                    events.push("text:get")
+                    return "blocked by https://github.com/qaiik/frsafety"
+                },
+                set: function(val) {
+                    events.push("text:set")
+                    console.log('text:set', arguments);
+                    return "blocked by https://github.com/qaiik/frsafety"
+                }
+            });
+
+            Object.defineProperty(e, 'outerHTML', {
+                get: function() {
+                    console.log('text:get');
+                    events.push("text:get")
+                    return "blocked by https://github.com/qaiik/frsafety"
+                },
+                set: function(val) {
+                    events.push("text:set")
+                    console.log('text:set', arguments);
+                    return "blocked by https://github.com/qaiik/frsafety"
+                }
+            });
+
+            function makeUL(array) {
+                // Create the list element:
+                var list = ull
+
+                for (var i = 0; i < array.length; i++) {
+                    var item = document.createElement('li');
+
+                    item.appendChild(document.createTextNode(array[i]));
+
+                    list.appendChild(item);
+                }
+
+                return list;
+            }
+
+            function listenChangesinArray(arr, callback) {
+                // Add more methods here if you want to listen to them
+                ['pop', 'push', 'reverse', 'shift', 'unshift', 'splice', 'sort'].forEach((m) => {
+                    arr[m] = function() {
+                        var res = Array.prototype[m].apply(arr, arguments); // call normal behaviour
+                        callback.apply(arr, arguments); // finally call the callback supplied
+                        return res;
+                    }
+                });
+            }
+            listenChangesinArray(events, () => {
+                makeUL(events)
+            })
+        </script>
+        <h4>Paste your script into the console here. Don't worry, you won't get anything stolen.</h1>
+            Heres what happened:
+            <ul id="ull">
+
+            </ul>
+    </article>
+</section>
